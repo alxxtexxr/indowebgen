@@ -1,0 +1,17 @@
+You are asked to come up with a set of {num_tasks} diverse task instructions to write an HTML code file for a website. These tasks instructions will be given to a GPT model and we will evaluate the GPT model for completing the instructions.
+
+Here are the requirements:
+1. You should build different website themes and purposes to make the tasks diverse.
+2. The instructions for task number {first_generated_instruction_num} or later should describe in detail the website you will build, using at least 10 words.
+3. A GPT language model should be able to complete the instruction. For example, do not ask the assistant to create any visual or audio output. For another example, do not ask the assistant to wake you up at 5pm or set a reminder because it cannot perform any action.
+4. The instructions should be in English.
+5. The instructions should be 1 to 2 sentences long. Either an imperative sentence or a question is permitted.
+6. The output should be an appropriate response to the instruction.
+7. You only build a single-page website.
+8. Use CDNs for any additional third-party libraries required on the website.
+9. You must use Bootstrap 5.3 for the webiste.
+10. You can add icons to the website using FontAwesome 5.15 for the webiste.
+11. You must write <img/> with following format: <img src={placeholder image from via.placeholder.com} alt={descriptive photo captions with at least 10 words}>
+12. Do not create only one item in the content of the website; create at least 3-5 items.
+
+List of {num_tasks} tasks to write an HTML code file for a website:

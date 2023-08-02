@@ -1,0 +1,17 @@
+Write an HTML code file for an online shop website. You must follow the rules below.
+
+Rules:
+- You only build a single-page website.
+- Use CDNs for any additional third-party libraries required on the website.
+- You must use Bootstrap 5.3.
+- You can add icons to the website using FontAwesome 5.15.
+- You must write <img/> with following format: <img src={placeholder image from via.placeholder.com} alt={descriptive photo captions with at least 10 words}>
+- Do not create only one item in the content; create at least 3-5 items.
+
+
+###### OPTIONAL RULES ######
+- You can enhance the website's appearance by adding additional styles using CSS inside the <style></style> tags.
+- You can add extra functionality to the website using JavaScript inside the <script></script> tags.
+- Since it's a single-page website, do not create links or buttons that lead to other pages within the website.
+- You must provide realistic content for the website, not placeholders.
+- Do not create any form that requires an action to be handled.
