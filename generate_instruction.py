@@ -47,16 +47,16 @@ def post_process_gpt3_response(num_prompt_instructions, response):
     for idx, inst in enumerate(raw_instructions):
         # if the decoding stops due to length, the last example is likely truncated so we discard it
         if idx == len(raw_instructions) - 1 and response["finish_reason"] == "length":
-            print('Skipping inst because it is likely truncated.')
-            print('inst >>\n', inst)
+            print('Skipping the instruction because it is likely truncated.')
+            print(f'Instruction:', inst)
             continue
         idx += num_prompt_instructions + 1
         splitted_data = re.split(f"{idx}\.\s+(Instruction|Output):", inst)
         ## the splitted_data should have length of 7: ['', 'Instruction', {instruction}, 'Input', {input}, 'Output', {output}]
         # the splitted_data should have length of 5: ['', 'Instruction', {instruction}, 'Output', {output}]
         if len(splitted_data) != 5:
-            print('Skipping inst because splitted_data length is not 5.')
-            print('inst >>\n', inst)
+            print('Skipping the instruction because splitted_data length is not 5.')
+            print(f'Instruction:', inst)
             continue
         else:
             inst = splitted_data[2].strip()
@@ -65,52 +65,52 @@ def post_process_gpt3_response(num_prompt_instructions, response):
             output = splitted_data[4].strip()
         # filter out too short or too long instructions
         if len(inst.split()) <= 3 or len(inst.split()) > 150:
-            print('Skipping inst because it is too short or too long.')
-            print('inst >>\n', inst)
+            print('Skipping the instruction because it is too short or too long.')
+            print(f'Instruction:', inst)
             continue
         # filter based on keywords that are not suitable for language models.
         blacklist = [
-            "image",
-            "images",
+            # "image",
+            # "images",
             "graph",
             "graphs",
-            "picture",
-            "pictures",
+            # "picture",
+            # "pictures",
             # "file",
-            "files",
-            "map",
-            "maps",
+            # "files",
+            # "map",
+            # "maps",
             "draw",
             "plot",
             "go to",
-            "video",
+            # "video",
             "audio",
-            "music",
+            # "music",
             "flowchart",
             "diagram",
         ]
         blacklist += []
         if any(find_word_in_string(word, inst) for word in blacklist):
-            print('Skipping inst because it contains blacklisted words.')
-            print('inst >>\n', inst)
+            print('Skipping the instruction because it contains blacklisted words.')
+            print(f'Instruction:', inst)
             continue
         # We found that the model tends to add "write a program" to some existing instructions, which lead to a lot of such instructions.
         # And it's a bit comfusing whether the model need to write a program or directly output the result.
         # Here we filter them out.
         # Note this is not a comprehensive filtering for all programming instructions.
         if inst.startswith("Write a program"):
-            print('Skipping inst because it starts with "Write a program".')
-            print('inst >>\n', inst)
+            print('Skipping the instruction because it starts with "Write a program".')
+            print(f'Instruction:', inst)
             continue
         # filter those starting with punctuation
         if inst[0] in string.punctuation:
-            print('Skipping inst because it starts with punctuation.')
-            print('inst >>\n', inst)
+            print('Skipping the instruction because it starts with punctuation.')
+            print(f'Instruction:', inst)
             continue
         # filter those starting with non-english character
         if not inst[0].isascii():
-            print('Skipping inst because it starts with non-english character.')
-            print('inst >>\n', inst)
+            print('Skipping the instruction because it starts with non-english character.')
+            print(f'Instruction:', inst)
             continue
         instructions.append({"instruction": inst, "output": output})
     return instructions
@@ -228,8 +228,8 @@ def generate_instruction_following_data(
             }
             # Check the similarity
             if max(rouge_scores) > similarity_threshold:
-                print(f'Skipping instruction_data_entry because the similarity is {max(rouge_scores)} > {similarity_threshold}')
-                print('instruction_data_entry >>', instruction_data_entry)
+                print(f'Skipping the instruction because the similarity score: {max(rouge_scores)} > {similarity_threshold}.')
+                print(f'Instruction:', instruction_data_entry["instruction"])
                 continue
             else:
                 keep += 1
@@ -240,12 +240,12 @@ def generate_instruction_following_data(
             all_instruction_tokens.append(new_instruction_tokens)
             progress_bar.update(1)
         process_duration = time.time() - process_start
-        print(f"Request {request_idx} took {request_duration:.2f}s, processing took {process_duration:.2f}s")
+        print(f"Request {request_idx} took {request_duration:.2f}s, processing took {process_duration:.2f}s, {result['total_tokens']} tokens")
         print(f"Generated {total} instructions, kept {keep} instructions")
         
         # If total generated is 0, print the result, because maybe something's wrong
         if total == 0:
-            print('result >>\n', result)
+            print(f'Result:', result)
         
         utils.jdump(machine_instruction_data, os.path.join(output_dir, "regen.json"))
 
