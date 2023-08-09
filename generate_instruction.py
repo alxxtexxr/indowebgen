@@ -23,7 +23,7 @@ import utils
 
 import fire
 
-# import pprint
+import pprint
 
 def encode_prompt(prompt, prompt_instructions):
     """Encode multiple prompt instructions into a single string."""
@@ -133,29 +133,18 @@ def generate_instruction_following_data(
     num_cpus=16,
     similarity_threshold=0.7,
 ):
-    with open(instruction_path, 'r') as file:
-      instruction = file.read()
-    
     seed_instruction_data = []
-    seed_paths = os.listdir(seeds_dir)
-    for seed_path in seed_paths:
-      # Check if the path is a file (not a directory)
-      if not os.path.isfile(os.path.join(seeds_dir, seed_path)): continue
-      
-      seed_website_type, file_ext = os.path.splitext(seed_path)
-      
-      # Check if the file is HTML file
-      if file_ext.lower() != '.html': continue
-      
-      with open(os.path.join(seeds_dir, seed_path), 'r') as f:
-        seed_output = f.read()
-        seed = {
-          # Format the instruction template with the dynamic substring
-          'instruction': instruction.format(website_type=seed_website_type.replace('-', ' ')), 
-          'output': seed_output,
-        }
-        seed_instruction_data.append(seed)
-    
+    seed_dicts = utils.jload(os.path.join(seeds_dir, 'seeds.json'))
+    for seed_dict in seed_dicts:
+        instruction, output_file = seed_dict.values()
+        output_path = os.path.join(seeds_dir, output_file)
+        with open(output_path, 'r') as f:
+            output = f.read()
+            seed_instruction_data.append({
+                'instruction': instruction, 
+                'output': output,
+            })
+        
     print(f"Loaded {len(seed_instruction_data)} seed instructions")
 
     os.makedirs(output_dir, exist_ok=True)

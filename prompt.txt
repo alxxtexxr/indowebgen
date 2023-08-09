@@ -10,8 +10,10 @@ Here are the requirements:
 7. The output must be an appropriate response to the instruction.
 8. You only build a single-page website.
 9. Use CDNs for any additional third-party libraries required on the website.
+10. Use dummy images from dummyimage.com for the website's images.
 10. You must use Bootstrap 5.3 for the website.
-11. You can add icons to the website using FontAwesome 5.15 for the website.
+11. You can add icons to the website using Bootstrap 1.10 for the website.
 12. Do not create only one item in the content of the website; create at least 3-5 items.
+13. You can add a map to the website, but only using an iframe.
 
 List of {num_tasks} tasks to write an HTML code file for a website:

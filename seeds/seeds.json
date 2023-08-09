@@ -1,0 +1,30 @@
+[
+    {
+        "instruction": "Create a website for a personal blog, featuring a navigation bar at the top with links to Home, About, Blog, and Contact sections. The header displays the blog's title along with a welcoming message. Beneath the header, there are 3 sections: \"Exploring Nature,\" \"Food Adventures,\" and \"Urban Life,\" each showcasing an image and a brief description. Further down, the \"Latest Posts\" section presents 3 cards, each containing a post title, a short description, and a \"Read More\" button. The footer at the bottom of the page includes copyright information for the year 2023. The overall design is clean and user-friendly, with a responsive layout to accommodate various screen sizes.",
+        "output_file": "blog.html"
+    },
+    {
+        "instruction": "Create a comprehensive website that features a professionally designed interface for a company. It includes a fixed navigation bar with links to the About, Services, and Contact sections. The hero section presents the company's name, highlighting innovative solutions. The About section provides information about the company, complemented by an image. The Services section showcases 3 distinct services, each with an image and description. The Contact section offers a form for inquiries and a corresponding image. A footer at the bottom displays the copyright year and the company name. The overall design integrates a clean layout, responsive elements, and icons for enhanced user experience.",
+        "output_file": "company.html"
+    },
+    {
+        "instruction": "Create a comprehensive news website characterized by a sleek design and an efficient layout. It comprises a light-themed navigation bar with links to Latest News, Featured Stories, and Contact Us sections. The Latest News section presents 3 cards, each featuring a headline and a snippet of breaking news from various categories. The Featured Stories section includes 2 cards highlighting investigative reports and entertainment news. The Contact Us section provides a user-friendly form for news tips and feedback. The footer displays copyright information and acknowledges the designer and developer. The site effectively offers a visually appealing platform for users to access current news and contribute to the news cycle.",
+        "output_file": "news.html"
+    },
+    {
+        "instruction": "Create a dynamic online shop website that offers a visually appealing experience with a responsive design. The site includes a user-friendly navigation bar, a captivating hero section introducing the shop's diverse products, and a featured products section showcasing stylish chair, headphones, and backpack. The contact section allows users to get in touch conveniently, while the footer provides essential links and copyright information for 2023.",
+        "output_file": "online-shop.html"
+    },
+    {
+        "instruction": "Create a comprehensive personal website that offers visitors a glimpse into the creator's world. The navigation bar provides links to the About, Portfolio, and Contact sections, while the welcoming header introduces the purpose of the site. The About section presents a brief description and an image of the individual, followed by a portfolio section showcasing 3 distinct projects with descriptions. The Contact section offers a user-friendly form to get in touch, and the footer displays the copyright year and the name of the personal website. The website employs a clean layout, responsive design, and concise content to offer a well-rounded online presence.",
+        "output_file": "personal.html"
+    },
+    {
+        "instruction": "Create a meticulously crafted Transportation Hub website that offers a seamless user experience, featuring a fixed navigation bar providing links to the Services, About, and Contact sections. The striking header showcases the company's commitment to unmatched journeys, while the imagery-rich sections below display captivating visuals of a passenger train, cargo ship, and airplane, each accompanied by vivid descriptions. The Services section boasts icons representing Freight Transport, Express Delivery, and Global Shipping, emphasizing their core offerings. The footer wraps up the experience, presenting the copyright year and the company name. The site is bolstered by Bootstrap components for responsive design and enhanced interactivity.",
+        "output_file": "transportation.html"
+    },
+    {
+        "instruction": "Create a comprehensive website that represents a professional Travel Agency, featuring a dynamic user interface. It incorporates a stylish navigation bar with links to Services, Destinations, and Contact sections. The hero section showcases an enticing tagline and a call to action. The Services section presents 3 service categories with engaging icons and descriptions. In the Destinations section, 3 popular travel spots are highlighted with images and brief descriptions. The Contact section includes a user-friendly form and essential contact details. A sleek footer displays the copyright year and the Travel Agency's name, creating an inviting and informative platform for potential travelers.",
+        "output_file": "travel-agency.html"
+    }
+]
