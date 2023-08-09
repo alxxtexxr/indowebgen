@@ -125,9 +125,9 @@ def generate_instruction_following_data(
     num_instructions_to_generate_per_request,
     output_dir="./",
     seeds_dir="./seeds",
-    instruction_path="./instruction.txt",
     model_name="gpt-3.5-turbo",
-    num_prompt_instructions=3,
+    num_prompt_seed_instructions=3,
+    num_prompt_generated_instructions=1,
     temperature=1.0,
     top_p=1.0,
     num_cpus=16,
@@ -172,17 +172,22 @@ def generate_instruction_following_data(
     while len(machine_instruction_data) < num_instructions_to_generate:
         request_idx += 1
 
-        num_tasks = num_prompt_instructions + num_instructions_to_generate_per_request
+        num_tasks = num_prompt_seed_instructions + num_prompt_generated_instructions + num_instructions_to_generate_per_request
         prompt_to_encode = open("./prompt.txt").read() + "\n"
         prompt_to_encode = prompt_to_encode.replace('{num_tasks}', str(num_tasks))
-        prompt_to_encode = prompt_to_encode.replace('{first_generated_instruction_num}', str(num_prompt_instructions+1))
-        prompt_instructions = random.sample(seed_instruction_data, num_prompt_instructions)
+        prompt_to_encode = prompt_to_encode.replace('{first_generated_instruction_num}', str(num_prompt_seed_instructions+1))
+        prompt_instructions = []
+        prompt_instructions += random.sample(seed_instruction_data, num_prompt_seed_instructions)
+        prompt_instructions +=  [
+          {'instruction': item['instruction'], 'output': item['output']} 
+          for item in random.sample(machine_instruction_data, num_prompt_generated_instructions)
+        ]
         prompt = encode_prompt(prompt_to_encode, prompt_instructions)
         
         decoding_args = utils.OpenAIDecodingArguments(
             temperature=temperature,
             n=1,
-            max_tokens=6400,  # hard-code to maximize the length. the requests will be automatically adjusted
+            max_tokens=5700,  # hard-code to maximize the length. the requests will be automatically adjusted (formula = max_tokens - (message_tokens + completion_tokens))
             top_p=top_p,
             # stop=[f"\n{num_tasks}", f"{num_tasks}.", f"{num_tasks}."],
         )
@@ -198,7 +203,7 @@ def generate_instruction_following_data(
         process_start = time.time()
         instruction_data = []
         
-        new_instructions = post_process_gpt3_response(num_prompt_instructions, result)
+        new_instructions = post_process_gpt3_response(len(prompt_instructions), result)
         instruction_data += new_instructions
         
         total = len(instruction_data)
