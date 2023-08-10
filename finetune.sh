@@ -17,7 +17,7 @@ huggingface-cli login --token $3
 python finetune.py \
     --base_model 'meta-llama/Llama-2-7b-hf' \
     --data_path 'alimtegar/webgen-dataset-2' \
-    --output_dir './webgen-7b-lora' \
+    --output_dir './lora-alpaca' \
     --batch_size 32 \
     --micro_batch_size 4 \
     --num_epochs 8 \
