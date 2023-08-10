@@ -9,11 +9,15 @@ pip install git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6
 pip install scipy
 
 # Set up vast.ai
-pip install --upgrade vastai
-vastai set api-key $1
+if [ ! -z "$2" ]; then
+    pip install --upgrade vastai
+    vastai set api-key "$2"
+else
+    echo "Warning: vast.api API key not provided. Skipping vast.ai setup."
+fi
 
 # Finetune model
-huggingface-cli login --token $3
+huggingface-cli login --token "$1"
 python finetune.py \
     --base_model 'meta-llama/Llama-2-7b-hf' \
     --data_path 'alimtegar/webgen-dataset-2' \
@@ -35,4 +39,8 @@ python finetune.py \
 python push_to_hf.py
 
 # Stop vast.ai instance
-vastai stop instance $2
+if [ ! -z "$2" ] && [ ! -z "$3" ]; then
+    vastai stop instance "$3"
+else
+    echo "Warning: vast.api API key and instance ID not provided. Skipping vast.ai instance stopping."
+fi
