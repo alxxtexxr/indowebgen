@@ -12,9 +12,22 @@ python -m generate_instruction generate_instruction_following_data \
 ```
 
 ## Fine-tuning
-The fine-tuning process utilizes the WizardCoder-15B-V1.0 model.
+The fine-tuning process utilizes the WizardLM-13B-V1.2 model.
 
-1. Clone the Llama-X repository:
+```
+python finetune.py \
+  --hf_token hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
+  --base_model_id alimtegar/WizardLM-13B-V1.2-sharded \
+  --dataset_id alimtegar/webgen-dataset-2 \
+  --output_dir "./webgen-wizardlm-13b-lora" \
+  --output_model_id alimtegar/webgen-wizardlm-13b-lora \
+  --commit_message "Finetune for 3 epochs" \
+  --vastai_api_key xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
+  --vastai_instance_id 1234567
+  --stop_vastai_instance 0
+```
+
+<!-- 1. Clone the Llama-X repository:
 ```
 git clone https://github.com/AetherCortex/Llama-X.git
 ```
@@ -54,4 +67,4 @@ deepspeed train_wizardcoder.py \
     --gradient_checkpointing True \
     --deepspeed configs/deepspeed_config.json \
     --fp16 True
-```
+``` -->

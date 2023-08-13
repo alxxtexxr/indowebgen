@@ -17,13 +17,13 @@ def main(
   lora_target_modules='[q_proj,v_proj]',
   vastai_api_key=None,
   vastai_instance_id=None,
+  stop_vastai_instance=True,
 ):
   # Set up LoRA
   os.system('git clone https://github.com/tloen/alpaca-lora.git')
   os.chdir('alpaca-lora')
   os.system('''awk \'{gsub("data_point\\\\[\\\"input\\\"\\\\]", "None")}1\' \\
     finetune.py > finetune_custom.py''')
-  
   os.system('pip install -r requirements.txt')
   os.system('pip install git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08')
   os.system('pip install scipy')
@@ -34,6 +34,8 @@ def main(
 
   # Finetune model
   os.system(f'huggingface-cli login --token {hf_token}')
+  if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
   os.system(f'''python finetune_custom.py \\
     --base_model "{base_model_id}" \\
     --data_path "{dataset_id}" \\
@@ -63,7 +65,7 @@ def main(
   )
 
   # Stop vast.ai instance
-  if vastai_api_key and vastai_instance_id:
+  if vastai_api_key and vastai_instance_id and stop_vastai_instance:
 	  os.system(f'vastai stop instance {vastai_instance_id}')
   
 
