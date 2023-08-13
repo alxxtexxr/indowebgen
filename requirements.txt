@@ -4,3 +4,4 @@ rouge_score
 fire
 openai
 huggingface_hub
+vastai

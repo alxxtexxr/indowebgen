@@ -23,6 +23,7 @@ def main(
   os.chdir('alpaca-lora')
   os.system('''awk \'{gsub("data_point\\\\[\\\"input\\\"\\\\]", "None")}1\' \\
     finetune.py > finetune_custom.py''')
+  
   os.system('pip install -r requirements.txt')
   os.system('pip install git+https://github.com/huggingface/peft.git@e536616888d51b453ed354a6f1e243fecb02ea08')
   os.system('pip install scipy')
@@ -33,7 +34,7 @@ def main(
 
   # Finetune model
   os.system(f'huggingface-cli login --token {hf_token}')
-  os.system(f'''python finetune.py \\
+  os.system(f'''python finetune_custom.py \\
     --base_model "{base_model_id}" \\
     --data_path "{dataset_id}" \\
     --output_dir "{output_dir}" \\
