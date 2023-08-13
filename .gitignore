@@ -4,3 +4,4 @@ __pycache__/
 *regen*.json
 secrets.json
 *test*
+alpaca-lora/
