@@ -13,6 +13,7 @@ def main(
   batch_size=32,
   num_epochs=3,
   cutoff_len=2048, 
+  val_set_size=20,
   lora_r=8,
   lora_target_modules='[q_proj,v_proj]',
   vastai_api_key=None,
@@ -45,7 +46,7 @@ def main(
     --num_epochs {num_epochs} \\
     --learning_rate 1e-4 \\
     --cutoff_len {cutoff_len} \\
-    --val_set_size 20 \\
+    --val_set_size {val_set_size} \\
     --lora_r {lora_r} \\
     --lora_alpha 16 \\
     --lora_dropout 0.05 \\
