@@ -21,8 +21,8 @@ def main(
   stop_vastai_instance=True,
 ):
   # Set up LoRA
-  os.system('git clone https://github.com/tloen/alpaca-lora.git')
-  os.chdir('alpaca-lora')
+  os.system('git clone https://github.com/alimtegar/alpaca-lora-automodel.git')
+  os.chdir('alpaca-lora-automodel')
   os.system('''awk \'{gsub("data_point\\\\[\\\"input\\\"\\\\]", "None")}1\' \\
     finetune.py > finetune_custom.py''')
   os.system('pip install -r requirements.txt')
