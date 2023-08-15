@@ -19,6 +19,11 @@ def main(
   vastai_api_key=None,
   vastai_instance_id=None,
   stop_vastai_instance=True,
+  # Wandb parameters
+  wandb_project='',
+  wandb_run_name='',
+  wandb_watch='',  # options: false | gradients | all
+  wandb_log_model='',  # options: false | true
 ):
   # Set up LoRA
   os.system('git clone https://github.com/alimtegar/alpaca-lora-automodel.git')
@@ -52,7 +57,11 @@ def main(
     --lora_dropout 0.05 \\
     --lora_target_modules "{lora_target_modules}" \\
     --train_on_inputs \\
-    --group_by_length
+    --group_by_length \\
+    --wandb_project "{wandb_project}" \\
+    --wandb_run_name "{wandb_run_name}" \\
+    --wandb_watch "{wandb_watch}" \\
+    --wandb_log_model "{wandb_log_model}"
   ''')
 
   # Push model to Hugging Face
