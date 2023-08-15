@@ -4,7 +4,7 @@ from huggingface_hub import HfApi
 
 
 def main(
-  hf_token, 
+  # hf_token, 
   base_model_id, 
   dataset_id, 
   output_dir, 
@@ -39,7 +39,7 @@ def main(
     os.system(f'vastai set api-key {vastai_api_key}')
 
   # Finetune model
-  os.system(f'huggingface-cli login --token {hf_token}')
+  # os.system(f'huggingface-cli login --token {hf_token}')
   if not os.path.exists(output_dir):
     os.makedirs(output_dir)
   os.system(f'''python finetune_custom.py \\
