@@ -23,7 +23,8 @@ import utils
 
 import fire
 
-import pprint
+import pdb
+from pprint import pprint
 
 def encode_prompt(prompt, prompt_instructions):
     """Encode multiple prompt instructions into a single string."""
@@ -127,7 +128,7 @@ def generate_instruction_following_data(
     seeds_dir="./seeds",
     model_name="gpt-3.5-turbo",
     num_prompt_seed_instructions=3,
-    num_prompt_generated_instructions=1,
+    # num_prompt_generated_instructions=1,
     temperature=1.0,
     top_p=1.0,
     num_cpus=16,
@@ -136,16 +137,18 @@ def generate_instruction_following_data(
     seed_instruction_data = []
     seed_dicts = utils.jload(os.path.join(seeds_dir, 'seeds.json'))
     for seed_dict in seed_dicts:
-        instruction, output_file = seed_dict.values()
+        instruction, type, output_file = seed_dict.values()
         output_path = os.path.join(seeds_dir, output_file)
         with open(output_path, 'r') as f:
             output = f.read()
             seed_instruction_data.append({
                 'instruction': instruction, 
+                'type': type,
                 'output': output,
             })
         
     print(f"Loaded {len(seed_instruction_data)} seed instructions")
+    # pdb.set_trace()
 
     os.makedirs(output_dir, exist_ok=True)
     request_idx = 0
@@ -172,17 +175,35 @@ def generate_instruction_following_data(
     while len(machine_instruction_data) < num_instructions_to_generate:
         request_idx += 1
 
-        num_tasks = num_prompt_seed_instructions + num_prompt_generated_instructions + num_instructions_to_generate_per_request
+        num_tasks = num_prompt_seed_instructions + num_instructions_to_generate_per_request # + num_prompt_generated_instructions
         prompt_to_encode = open("./prompt.txt").read() + "\n"
         prompt_to_encode = prompt_to_encode.replace('{num_tasks}', str(num_tasks))
         prompt_to_encode = prompt_to_encode.replace('{first_generated_instruction_num}', str(num_prompt_seed_instructions+1))
+        
+        # prompt_instructions = []
+        # prompt_instructions += random.sample(seed_instruction_data, num_prompt_seed_instructions)
+        
+        # Get prompt instructions with unique types
+        random.shuffle(seed_instruction_data)
         prompt_instructions = []
-        prompt_instructions += random.sample(seed_instruction_data, num_prompt_seed_instructions)
-        prompt_instructions +=  [
-          {'instruction': item['instruction'], 'output': item['output']} 
-          for item in random.sample(machine_instruction_data, num_prompt_generated_instructions)
-        ]
+        unique_types = set()
+        
+        for dict in seed_instruction_data:
+            if dict['type'] not in unique_types:
+                prompt_instructions.append(dict)
+                unique_types.add(dict['type'])
+            if len(prompt_instructions) == num_prompt_seed_instructions:
+                break
+            
+        # Add prompt instruction from the generated data
+        # prompt_instructions +=  [
+        #   {'instruction': item['instruction'], 'output': item['output']} 
+        #   for item in random.sample(machine_instruction_data, num_prompt_generated_instructions)
+        # ]
+        
         prompt = encode_prompt(prompt_to_encode, prompt_instructions)
+        # pprint(prompt)
+        # pdb.set_trace()    
         
         decoding_args = utils.OpenAIDecodingArguments(
             temperature=temperature,
