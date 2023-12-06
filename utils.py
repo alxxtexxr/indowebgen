@@ -44,7 +44,7 @@ class OpenAIDecodingArguments(object):
 def openai_completion(
     prompt: str,
     decoding_args: OpenAIDecodingArguments,
-    model_name="gpt-3.5-turbo",
+    model_name="gpt-3.5-turbo-16k",
     sleep_time=2,
     **decoding_kwargs,
 ) -> StrOrOpenAIObject:
@@ -72,10 +72,7 @@ def openai_completion(
             )
             # If using chat model, use ChatCompletion
             completion_batch = openai.ChatCompletion.create(
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": prompt}
-                ],
+                messages=[{"role": "user", "content": prompt}],
                 **shared_kwargs,
             )
             choice = completion_batch.choices[0]

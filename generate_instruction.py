@@ -127,8 +127,8 @@ def generate_instruction_following_data(
     output_dir="./",
     seeds_dir="./seeds",
     model_name="gpt-3.5-turbo",
-    num_prompt_seed_instructions=3,
-    # num_prompt_generated_instructions=1,
+    num_prompt_seed_instructions=2,
+    num_prompt_generated_instructions=1,
     temperature=1.0,
     top_p=1.0,
     num_cpus=16,
@@ -175,7 +175,7 @@ def generate_instruction_following_data(
     while len(machine_instruction_data) < num_instructions_to_generate:
         request_idx += 1
 
-        num_tasks = num_prompt_seed_instructions + num_instructions_to_generate_per_request # + num_prompt_generated_instructions
+        num_tasks = num_prompt_seed_instructions + num_instructions_to_generate_per_request + num_prompt_generated_instructions
         prompt_to_encode = open("./prompt.txt").read() + "\n"
         prompt_to_encode = prompt_to_encode.replace('{num_tasks}', str(num_tasks))
         prompt_to_encode = prompt_to_encode.replace('{first_generated_instruction_num}', str(num_prompt_seed_instructions+1))
@@ -196,19 +196,20 @@ def generate_instruction_following_data(
                 break
             
         # Add prompt instruction from the generated data
-        # prompt_instructions +=  [
-        #   {'instruction': item['instruction'], 'output': item['output']} 
-        #   for item in random.sample(machine_instruction_data, num_prompt_generated_instructions)
-        # ]
+        if len(machine_instruction_data) and num_prompt_generated_instructions:
+            prompt_instructions +=  [
+                {'instruction': item['instruction'], 'output': item['output']} 
+                for item in random.sample(machine_instruction_data, num_prompt_generated_instructions)
+            ]
         
         prompt = encode_prompt(prompt_to_encode, prompt_instructions)
-        # pprint(prompt)
-        # pdb.set_trace()    
+        # print(prompt)
+        # pdb.set_trace()
         
         decoding_args = utils.OpenAIDecodingArguments(
             temperature=temperature,
             n=1,
-            max_tokens=5700,  # hard-code to maximize the length. the requests will be automatically adjusted (formula = max_tokens - (message_tokens + completion_tokens))
+            max_tokens=6000,  # hard-code to maximize the length. the requests will be automatically adjusted (formula = max_tokens - (message_tokens + completion_tokens))
             top_p=top_p,
             # stop=[f"\n{num_tasks}", f"{num_tasks}.", f"{num_tasks}."],
         )

@@ -1,19 +1,19 @@
-You are asked to come up with a set of {num_tasks} diverse task instructions, where each instruction corresponds to building a single website. These tasks instructions will be given to a GPT model and we will evaluate the GPT model for completing the instructions.
+You are asked to come up with a set of {num_tasks} diverse task instructions to build a website, each paired with its respective HTML code output. These tasks instructions will be given to a GPT model and we will evaluate the GPT model for completing the instructions.
 
 Here are the requirements:
-1. You must build the websites with different purposes and themes to make the tasks diverse.
-2. The instructions for task no. {first_generated_instruction_num} or later must describe the websites you build in detail and comprehensively
-3. A GPT language model should be able to complete the instruction. For example, do not ask the assistant to create any visual or audio output. For another example, do not ask the assistant to wake you up at 5pm or set a reminder because it cannot perform any action.
-4. The instructions must be in Indonesian.
-5. The content of the websites you build must be in Indonesian
+1. A GPT language model should be able to complete the instruction. For example, do not ask the assistant to create any visual or audio output. For another example, do not ask the assistant to wake you up at 5pm or set a reminder because it cannot perform any action.
+2. The instructions for task no. {first_generated_instruction_num} or later must describe the output (the HTML code of the website) in detail and comprehensively.
+3. The instructions must be in Indonesian.
+4. The content of the website you build must be in Indonesian
+5. You must build the website with different purposes and themes to make the tasks diverse.
 6. The instructions must be 1 paragraph long. Either an imperative sentence or a question is permitted.
 7. The output must be an appropriate response to the instruction.
-8. You only build single-page websites.
+8. You only build single-page website.
 9. Use CDNs for any additional third-party libraries required on the website.
-10. Use dummy images from dummyimage.com for the websites' images.
-11. You must use Bootstrap 5.3 for the websites.
-12. You can add icons to the websites using FontAwesome 5.15.
-13. Do not create only one item in the content of the websites; create at least 3-5 items.
-14. You can add a map to the websites, but only using an iframe.
+10. Use dummy images from dummyimage.com for images in the website.
+11. You must use Bootstrap 5.3 for the website.
+12. You can add icons to the website using FontAwesome 5.15.
+13. Do not create only one item in the content of the website; create at least 3-5 items.
+14. You can add a map to the website, but only using an iframe.
 
-List of {num_tasks} tasks to build a website:
+List of {num_tasks} task instructions to build a website, each paired with its respective HTML code output:
