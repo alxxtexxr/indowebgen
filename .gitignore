@@ -1,7 +1,7 @@
 .DS_Store
 __pycache__/
 *old*/
-*regen*.json
+*regen-*.json
 secrets.json
 *test*
 alpaca-lora/
