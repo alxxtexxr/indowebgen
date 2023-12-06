@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <title>John Doe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      font-size: 10px;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --general-color: rgb(35, 46, 55);
+      --custom-color: rgb(1, 140, 255);
+    }
+
+    body p {
+      color: rgb(148, 156, 163);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      box-shadow: 2px 3px 6px rgba(165, 164, 164, 0.5);
+    }
+
+    .navbar-brand span {
+      color: var(--custom-color);
+    }
+
+    /* HERO */
+    .home {
+      padding: 5rem 0;
+    }
+
+    .hero-left h1 {
+      font-size: 5rem;
+      font-weight: 700;
+    }
+
+    .hero-left h1 span {
+      color: var(--custom-color);
+    }
+
+    .hero-left>p {
+      width: 70%;
+    }
+
+    .hero-left-img {
+      width: 450px;
+      height: 450px;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% !important;
+      overflow: hidden;
+    }
+
+    .hero-left-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width:992px) {
+      .hero-left h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero-left>p {
+        width: 100%;
+      }
+
+      .hero-left-img {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    @media (max-width:576px) {
+      .hero-left h1 {
+        font-size: 3.3rem;
+      }
+    }
+
+    /* ABOUT */
+    .about {
+      background-color: rgb(249, 249, 249);
+      padding: 7rem 0;
+    }
+
+    .about h1 {
+      font-size: 2.5rem;
+    }
+
+    .about img {
+      border-radius: 2rem;
+    }
+
+    .about h1 span {
+      color: var(--custom-color);
+      font-weight: 700;
+    }
+
+    .about-icons>div {
+      height: 60px;
+      width: 60px;
+      border-radius: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .about-icons i {
+      color: var(--custom-color);
+    }
+
+    .about-icons>div:hover {
+      background-color: rgb(233, 221, 221);
+    }
+
+    /* PROJECT */
+    .project1 {
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .project h1 span {
+      color: var(--custom-color);
+    }
+
+    .project1 h3 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .project1 img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: .7s all;
+    }
+
+    .project1:hover img {
+      filter: brightness(.5);
+      transform: scale(1.1);
+    }
+
+    .project1:hover h3 {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* CONTACT */
+    .contact-left {
+      background-color: aliceblue;
+      padding: 2rem;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-white fixed-top">
+    <div class="container">
+      <a class="navbar-brand fs-1 fw-bolder" href="#"><span>John</span> Doe</a>
+      <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item mx-2">
+            <a class="nav-link active fs-5 mx-4 fw-medium" href="#">Beranda</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link active fs-5 mx-4 fw-medium" href=" #about">Tentang Saya</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link active fs-5 mx-4 fw-medium" href="#project">Proyek Saya</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link active fs-5 mx-4 fw-medium" href=" #contact">Hubungi Saya</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- HERO -->
+  <div class="home">
+    <div class="container overflow-hidden pt-lg-5 py-md-4">
+      <div class="col-lg-12 pt-lg-5 pt-md-4">
+        <div class="row flex-lg-row flex-column-reverse justify-content-center align-items-center flex-md-row">
+          <div
+            class="hero-left col-lg-7 col-md-6 col-sm-12 pt-md-5 px-5 px-lg-0 text-center text-lg-start text-md-start">
+            <h2 class="fs-1 fw-bold">Halo! 👋</h2>
+            <h1>
+              Saya John Doe, <br />
+              Seorang <span>Pengembang Web</span>
+            </h1>
+            <p class="py-4 fs-5 px-5 px-lg-0 px-md-0">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut
+              consequatur dolores quaerat omnis itaque architecto dolorum.
+            </p>
+            <a href="#" target="_blank">
+              <button type="button" class="btn btn-primary fs-4 py-3 px-5 fw-bold">
+                Download CV
+              </button>
+            </a>
+          </div>
+          <div class="col-lg-5 col-md-6 col-sm-12 d-flex justify-content-center align-items-center py-5">
+            <div class="hero-left-img">
+              <img src="https://dummyimage.com/450x450/b5a3b5/fff" alt="" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ABOUT -->
+  <div class="about">
+    <div class="container py-lg-5" id="about">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-5 col-md-12 py-lg-5">
+            <img src="https://dummyimage.com/750x500/b5a3b5/fff" alt="" class="img-fluid py-lg-5" />
+          </div>
+          <div class="col-lg-7 px-5 col-md-12 py-lg-5 text-center text-lg-start">
+            <h1 class="mt-5"><span>Tentang Saya</span></h1>
+            <h1 class="my-4">Pengembang Web Berpengalaman 📍</h1>
+            <p class="fs-3 mb-0">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
+              tempore animi. Quia cupiditate cum, consequuntur molestiae quo
+              iste a eaque maiores numquam possimus autem repudiandae
+              voluptatem! Minima a officiis maxime, dolorum blanditiis, ipsum
+              consequatur maiores provident natus nostrum ab tempora?
+            </p>
+            <div class="pt-5 about-icons d-flex justify-content-center justify-content-lg-start pt-lg-3">
+              <div>
+                <a href="https://linkedin/in/#" target="_blank">
+                  <i class="fab fa-linkedin fs-1 px-4"></i>
+                </a>
+              </div>
+              <div>
+                <a href="https://github.com/#" target="_blank">
+                  <i class="fab fa-github fs-1 px-4"></i>
+                </a>
+              </div>
+              <div>
+                <a href="https://instagram.com/#" target="_blank">
+                  <i class="fab fa-instagram fs-1 px-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- PROJECTS -->
+  <div class="container project" id="project">
+    <div class="col-md-12 py-md-5 text-center">
+      <h1 class="mt-5 fw-bolder"><span>Proyek Saya</span></h1>
+      <h1 class="mt-4 mb-5">
+        Berbagai Website yang Telah Saya Kembangkan
+      </h1>
+      <div class="row py-md-5">
+        <div class="col-md-5 project1 mx-md-5 py-3">
+          <a href="#" target="_blank">
+            <img src="https://dummyimage.com/480x360/b5a3b5/fff" alt="" class="" />
+            <h3>
+              Kunjungi Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </h3>
+          </a>
+        </div>
+        <div class="col-md-5 project1 mx-md-5 py-3">
+          <a href="#" target="_blank">
+            <img src="https://dummyimage.com/480x360/b5a3b5/fff" alt="" class="img-fluid" />
+            <h3>
+              Kunjungi Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </h3>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row pb-5">
+        <div class="col-md-5 project1 py-3 mx-md-5">
+          <a href="#" target="_blank">
+            <img src="https://dummyimage.com/480x360/b5a3b5/fff" alt="" class="img-fluid" />
+            <h3>
+              Kunjungi Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </h3>
+          </a>
+        </div>
+        <div class="col-md-5 project1 mx-md-5">
+          <a href="#" target="_blank">
+            <img src="https://dummyimage.com/480x360/b5a3b5/fff" alt="" class="img-fluid" />
+            <h3>
+              Kunjungi Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </h3>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CONTACT -->
+  <div class="container py-lg-5" id="contact">
+    <div class="col-lg-12 py-lg-5">
+      <div class="row py-lg-5">
+        <div class="col-lg-8 col-sm-12 py-lg-5 px-5 contact-left">
+          <div class="mb-3 py-2">
+            <label for="exampleFormControlInput1" class="form-label fw-bold text-primary fs-4">Nama</label>
+            <input type="text" class="form-control py-2" id="exampleFormControlInput1" placeholder="" />
+          </div>
+          <div class="mb-3 py-2">
+            <label for="exampleFormControlInput1" class="form-label fw-bold text-primary fs-4">Email</label>
+            <input type="email" class="form-control py-2" id="exampleFormControlInput1" placeholder="" />
+          </div>
+          <div class="mb-3 py-2">
+            <label for="exampleFormControlTextarea1" class="form-label fw-bold text-primary fs-4">Pesan</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <button type="button" class="btn px-5 py-3 mt-3 btn-primary">
+            <a class="fw-bold text-white text-decoration-none fw-bold fs-4">Kirim Pesan</a>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- FOOTER -->
+  <div class="container-fluid text-black text-center py-5">
+    <h5>&copy; 2023 John Doe. All Rights Reserved</h5>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

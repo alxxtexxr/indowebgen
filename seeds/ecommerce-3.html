@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <title>Toko Gadget</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    body p {
+      color: #5C6C75;
+    }
+
+    body button {
+      background-color: #001e2b;
+      color: white;
+    }
+
+    /* NAVBAR */
+    .search input {
+      width: 450px;
+    }
+
+    .navbar {
+      background-color: aliceblue;
+    }
+
+    .navbar .navbar-nav li i {
+      color: #001e2b;
+    }
+
+    /* HERO */
+    .hero {
+      background-image: url(https://dummyimage.com/1660x625/eee/ddd);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      padding: 140px 50px;
+      border-radius: 10px;
+    }
+
+    .main {
+      margin-top: 55px;
+    }
+
+    .hero h1 {
+      font-size: 45px;
+    }
+
+    .hero p {
+      width: 50%;
+    }
+
+    @media(max-width:991px) {
+      .hero {
+        padding: 110px 25px;
+      }
+
+      .hero h1 {
+        font-size: 39px;
+      }
+
+      .hero p {
+        width: 70%;
+      }
+    }
+
+    @media(max-width:576px) {
+      .hero {
+        padding: 105px 10px;
+        width: 95%;
+        margin: auto;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      .hero p {
+        width: 88%;
+      }
+    }
+
+    /* CATEGORY */
+    .category h1 {
+      font-size: 29px;
+    }
+
+    .category-card {
+      border: 1px solid rgb(168, 168, 168);
+      ;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .category-card:hover {
+      border: 1px solid #0AAD0A;
+      box-shadow: 3px 3px 8px rgba(174, 175, 175, 0.466);
+    }
+
+    @media(max-width:991px) {
+      .category h1 {
+        font-size: 23px;
+      }
+
+      #category-card3 {
+        display: none;
+      }
+
+      #category-card4 {
+        display: none;
+      }
+
+      .col-sm-6 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+      }
+    }
+
+    /* OFFER-CARD */
+    .offer-card {
+      background-image: url(https://dummyimage.com/787x300/eee/ddd);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 50px 25px;
+      border-radius: 9px;
+    }
+
+    @media(max-width:991px) {
+      .offer-card {
+        padding: 40px 15px;
+      }
+    }
+
+    /* PRODUCTS */
+    .product {
+      border: 1px solid rgb(168, 168, 168);
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .products h1 {
+      font-size: 29px;
+    }
+
+    .product:hover {
+      border: 1px solid #0AAD0A;
+      box-shadow: 3px 3px 9px rgba(174, 175, 175, 0.466);
+    }
+
+    .product-info {
+      padding: 10px 20px;
+    }
+
+    .product-info p {
+      font-size: 12px;
+      margin-bottom: 2px !important;
+      font-weight: 500;
+    }
+
+    .product-info>div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-info button {
+      background-color: #0aad0a;
+    }
+
+    .product-info del {
+      color: #5C6C75;
+    }
+
+    .product h3 {
+      font-size: 14px;
+    }
+
+    @media (max-width:576px) {
+      .product-info {
+        padding: 10px 10px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container ">
+      <a class="navbar-brand" href="#">Toko Gadget</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse pt-2" id="navbarSupportedContent">
+        <form class="d-flex mx-auto" role="search">
+          <input class="form-control me-2" type="search" placeholder="Cari produk disini..." aria-label="Cari" style="min-width: 500px;">
+          <button class="btn btn-outline-success" type="submit">Cari</button>
+        </form>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="d-inline-block d-lg-none ms-2">
+                Keranjang
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-heart"></i>
+              <span class="d-inline-block d-lg-none ms-2">
+                Favorit
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-user"></i>
+              <span class="d-inline-block d-lg-none ms-2">
+                Akun
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- HERO -->
+  <div class="container py-3 main">
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col-lg-12 hero">
+          <h3 class="fs-5">Gratis Ongkir hingga Rp100.000</h3>
+          <h1 class="fw-bolder pb-lg-3">Toko E-Commerce <br> untuk Gadget Keren</h1>
+          <p> Lorem dolor sit amet consectetur adipisicing elit. Quisquam, rem expedita aperiam nulla maiores esse.</p>
+          <a href="#" class="text-decoration-none text-white fw-bold">
+            <button type="button" class="rounded border-0 py-3 px-5 my-2">
+              Belanja Sekarang <i class="fas fa-arrow-right ms-1"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CATEGORY -->
+  <div class="container category py-lg-5 py-3">
+    <div class="col-lg-12">
+      <h1 class="fw-bold">Kategori</h1>
+      <div class="row g-3">
+        <div class="col-lg-3 col-sm-6">
+          <a href="#" class="text-decoration-none">
+            <div class="category-card py-5">
+              <img src="https://dummyimage.com/150/000/fff" alt="Smartphone">
+              <p class="mb-0">Smartphone</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <a href="#" class="text-decoration-none">
+            <div class="category-card py-5">
+              <img src="https://dummyimage.com/150/000/fff" alt="Laptop">
+              <p class="mb-0">Laptop</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <a href="#" class="text-decoration-none">
+            <div class="category-card py-5">
+              <img src="https://dummyimage.com/150/000/fff" alt="Komputer Desktop">
+              <p class="mb-0">Komputer Desktop</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <a href="#" class="text-decoration-none">
+            <div class="category-card py-5">
+              <img src="https://dummyimage.com/150/000/fff" alt="Aksesoris">
+              <p class="mb-0">Aksesoris</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- OFFERS -->
+  <div class="container py-3">
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <div class="offer-card">
+            <h1 class="fw-semibold">Smartphone & Laptop</h1>
+            <p class="fs-5">Dapatkan diskon hingga <span class="fw-bold">30%</span></p>
+            <a href="#">
+              <button class="py-2 px-4 border-0 rounded">Belanja Sekarang</button>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 pt-3 pt-md-0 pt-lg-0">
+          <div class="offer-card">
+            <h1 class="fw-semibold">Aksesoris Baru Trendi</h1>
+            <p class="fs-5">Dapatkan diskon hingga <span class="fw-bold">25%</span></p>
+            <a href="#">
+              <button class="py-2 px-4 border-0 rounded">Belanja Sekarang</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- PRODUCTS -->
+  <div class="container products py-3">
+    <h1 class="py-lg-3 fw-bold">Produk</h1>
+    <div class="col-lg-12">
+      <div class="row g-3">
+        <div class="col-lg-3 col-sm-6 col-md-6 ">
+          <div class="product">
+            <img src="https://dummyimage.com/300/000/fff" alt="Produk 1">
+            <div class="product-info ">
+              <p>Smartphone</p>
+              <h3 class="fw-bold">Produk 1</h3>
+              <div>
+                <h3 class="fw-semibold">Rp5.000.000</h3>
+                <a href="#">
+                  <button class="py-1 px-2 border-0 rounded">
+                    <i class="fas fa-shopping-cart me-2"></i>Beli
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6  col-md-6 ">
+          <div class="product">
+            <img src="https://dummyimage.com/300/000/fff" alt="Produk 2">
+            <div class="product-info">
+              <p>Smartphone</p>
+              <h3 class="fw-bold ">Produk 2</h3>
+              <div>
+                <h3 class="fw-semibold">Rp5.000.000</h3>
+                <a href="#">
+                  <button class="py-1 px-2 border-0 rounded">
+                    <i class="fas fa-shopping-cart me-2"></i>Beli
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-md-6 ">
+          <div class="product">
+            <img src="https://dummyimage.com/300/000/fff" alt="Produk 3">
+            <div class="product-info">
+              <p>Laptop</p>
+              <h3 class="fw-bold ">Produk 3</h3>
+              <div>
+                <h3 class="fw-semibold">Rp8.000.000</h3>
+                <a href="#">
+                  <button class="py-1 px-2 border-0 rounded">
+                    <i class="fas fa-shopping-cart me-2"></i>Beli
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-md-6 ">
+          <div class="product">
+            <img src="https://dummyimage.com/300/000/fff" alt="Produk 4">
+            <div class="product-info">
+              <p>Komputer Desktop</p>
+              <h3 class="fw-bold ">Produk 4</h3>
+              <div>
+                <h3 class="fw-semibold">Rp10.000.000</h3>
+                <a href="#">
+                  <button class="py-1 px-2 border-0 rounded">
+                    <i class="fas fa-shopping-cart me-2"></i>Beli
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FOOTER -->
+  <div class="container text-center py-5">
+    <p class="mb-0">&copy; 2023 Toko Gadget. All Rights Reserved.</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

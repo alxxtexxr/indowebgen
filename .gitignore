@@ -5,3 +5,4 @@ __pycache__/
 secrets.json
 *test*
 alpaca-lora/
+_seeds/
