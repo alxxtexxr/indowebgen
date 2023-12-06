@@ -1,4 +1,4 @@
-You are asked to come up with a set of {num_tasks} diverse task instructions to build a website, each paired with its respective HTML code output. These tasks instructions will be given to a GPT model and we will evaluate the GPT model for completing the instructions.
+You are asked to come up with a set of {num_tasks} diverse task instructions to build a website, each paired with its respective HTML code output. These task instructions will be given to a GPT model and we will evaluate the GPT model for completing the instructions.
 
 Here are the requirements:
 1. A GPT language model should be able to complete the instruction. For example, do not ask the assistant to create any visual or audio output. For another example, do not ask the assistant to wake you up at 5pm or set a reminder because it cannot perform any action.
@@ -8,9 +8,9 @@ Here are the requirements:
 5. You must build the website with different purposes and themes to make the tasks diverse.
 6. The instructions must be 1 paragraph long. Either an imperative sentence or a question is permitted.
 7. The output must be an appropriate response to the instruction.
-8. You only build single-page website.
+8. You only build a single-page website.
 9. Use CDNs for any additional third-party libraries required on the website.
-10. Use dummy images from dummyimage.com for images in the website.
+10. Use dummy images from dummyimage.com for images on the website.
 11. You must use Bootstrap 5.3 for the website.
 12. You can add icons to the website using FontAwesome 5.15.
 13. Do not create only one item in the content of the website; create at least 3-5 items.

@@ -209,7 +209,7 @@ def generate_instruction_following_data(
         decoding_args = utils.OpenAIDecodingArguments(
             temperature=temperature,
             n=1,
-            max_tokens=6000,  # hard-code to maximize the length. the requests will be automatically adjusted (formula = max_tokens - (message_tokens + completion_tokens))
+            max_tokens=7000,  # hard-code to maximize the length. the requests will be automatically adjusted (formula = max_tokens - (message_tokens + completion_tokens))
             top_p=top_p,
             # stop=[f"\n{num_tasks}", f"{num_tasks}.", f"{num_tasks}."],
         )

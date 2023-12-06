@@ -6,9 +6,9 @@ The data generation process utilizes the Alpaca Self-Instruct pipeline, but with
 python -m generate_instruction generate_instruction_following_data \
   --output_dir="./" \
   --num_instructions_to_generate=100 \
-  --num_instructions_to_generate_per_request=1 \
+  --num_instructions_to_generate_per_request=2 \
   --model_name="gpt-3.5-turbo-16k" \
-  --similarity_threshold=0.6
+  --similarity_threshold=0.9
 ```
 
 ## Fine-tuning
