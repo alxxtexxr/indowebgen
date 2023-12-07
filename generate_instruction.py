@@ -8,7 +8,7 @@ python -m generate_instruction generate_instruction_following_data \
   --model_name="text-davinci-003" \
 """
 import time
-import json
+# import json
 import os
 import random
 import re
@@ -16,7 +16,7 @@ import string
 from functools import partial
 from multiprocessing import Pool
 
-import numpy as np
+# import numpy as np
 import tqdm
 from rouge_score import rouge_scorer
 import utils
@@ -120,6 +120,13 @@ def post_process_gpt3_response(num_prompt_instructions, response):
 def find_word_in_string(w, s):
     return re.compile(r"\b({0})\b".format(w), flags=re.IGNORECASE).search(s)
 
+# Use vanilla functions instead of NumPy functions
+def argsort(a):
+  return sorted(range(len(a)), key=lambda k: a[k])
+
+def mean(a):
+    if not a: return None
+    return sum(a)/len(a)
 
 def generate_instruction_following_data(
     num_instructions_to_generate,
@@ -239,8 +246,9 @@ def generate_instruction_following_data(
                     all_instruction_tokens,
                 )
             rouge_scores = [score.fmeasure for score in rouge_scores]
+            pprint(rouge_scores)
             most_similar_instructions = {
-                all_instructions[i]: rouge_scores[i] for i in np.argsort(rouge_scores)[-10:][::-1]
+                all_instructions[i]: rouge_scores[i] for i in argsort(rouge_scores)[-10:][::-1]
             }
             # Check the similarity
             if max(rouge_scores) > similarity_threshold:
@@ -250,7 +258,7 @@ def generate_instruction_following_data(
             else:
                 keep += 1
             instruction_data_entry["most_similar_instructions"] = most_similar_instructions
-            instruction_data_entry["avg_similarity_score"] = float(np.mean(rouge_scores))
+            instruction_data_entry["avg_similarity_score"] = float(mean(rouge_scores))
             machine_instruction_data.append(instruction_data_entry)
             all_instructions.append(instruction_data_entry["instruction"])
             all_instruction_tokens.append(new_instruction_tokens)

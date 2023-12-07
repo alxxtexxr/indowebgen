@@ -8,7 +8,7 @@ python -m generate_instruction generate_instruction_following_data \
   --num_instructions_to_generate=100 \
   --num_instructions_to_generate_per_request=2 \
   --model_name="gpt-3.5-turbo-16k" \
-  --similarity_threshold=0.9
+  --similarity_threshold=0.6
 ```
 
 ## Fine-tuning
