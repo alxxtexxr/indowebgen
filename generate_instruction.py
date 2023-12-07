@@ -144,13 +144,14 @@ def generate_instruction_following_data(
     seed_instruction_data = []
     seed_dicts = utils.jload(os.path.join(seeds_dir, 'seeds.json'))
     for seed_dict in seed_dicts:
-        instruction, type, output_file = seed_dict.values()
+        instruction, type, dev_id, output_file = seed_dict.values()
         output_path = os.path.join(seeds_dir, output_file)
         with open(output_path, 'r') as f:
             output = f.read()
             seed_instruction_data.append({
                 'instruction': instruction, 
                 'type': type,
+                'dev_id': dev_id,
                 'output': output,
             })
         
@@ -190,15 +191,17 @@ def generate_instruction_following_data(
         # prompt_instructions = []
         # prompt_instructions += random.sample(seed_instruction_data, num_prompt_seed_instructions)
         
-        # Get prompt instructions with unique types
+        # Get prompt instructions with unique types and unique developer IDs
         random.shuffle(seed_instruction_data)
         prompt_instructions = []
         unique_types = set()
+        unique_dev_ids = set()
         
-        for dict in seed_instruction_data:
-            if dict['type'] not in unique_types:
-                prompt_instructions.append(dict)
-                unique_types.add(dict['type'])
+        for d in seed_instruction_data:
+            if d['type'] not in unique_types and d['dev_id'] not in unique_dev_ids:
+                prompt_instructions.append(d)
+                unique_types.add(d['type'])
+                unique_dev_ids.add(d['dev_id'])
             if len(prompt_instructions) == num_prompt_seed_instructions:
                 break
             
@@ -246,7 +249,6 @@ def generate_instruction_following_data(
                     all_instruction_tokens,
                 )
             rouge_scores = [score.fmeasure for score in rouge_scores]
-            pprint(rouge_scores)
             most_similar_instructions = {
                 all_instructions[i]: rouge_scores[i] for i in argsort(rouge_scores)[-10:][::-1]
             }
