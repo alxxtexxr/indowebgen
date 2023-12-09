@@ -1,4 +1,4 @@
-# 🌐🤖 WebGen 
+# 🇮🇩🌐🤖 IndoWebGen 
 
 ## Data Generation
 The data generation process utilizes the Alpaca Self-Instruct pipeline, but with the OpenAI chat model (e.g., `gpt-3.5-turbo`). Please note tthat his pipeline does not employ a batch system since the chat model does not support prompt batching.
@@ -17,10 +17,10 @@ The fine-tuning process utilizes the WizardLM-13B-V1.2 model.
 ```
 python finetune.py \
   --hf_token hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
-  --base_model_id alimtegar/WizardLM-13B-V1.2-sharded \
-  --dataset_id alimtegar/webgen-dataset-2 \
-  --output_dir "./webgen-wizardlm-13b-lora" \
-  --output_model_id alimtegar/webgen-wizardlm-13b-lora \
+  --base_model_id codellama/CodeLlama-7b-hf \
+  --dataset_id alimtegar/indowebgen-dataset \
+  --output_dir "./indowebgen-7b-2k-lora" \
+  --output_model_id alimtegar/indowebgen-7b-2k-lora \
   --commit_message "Finetune for 3 epochs" \
   --vastai_api_key xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
   --vastai_instance_id 1234567
