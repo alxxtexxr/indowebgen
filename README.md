@@ -3,7 +3,7 @@
 ## Data Generation
 The data generation process utilizes the Alpaca Self-Instruct pipeline, but with the OpenAI chat model (e.g., `gpt-3.5-turbo`). Please note tthat his pipeline does not employ a batch system since the chat model does not support prompt batching.
 ```
-python -m generate_instruction generate_instruction_following_data \
+python -m generate_data generate_instruction_following_data \
   --output_dir="./" \
   --num_instructions_to_generate=100 \
   --num_instructions_to_generate_per_request=2 \
@@ -19,8 +19,8 @@ python finetune.py \
   --hf_token hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
   --base_model_id codellama/CodeLlama-7b-hf \
   --dataset_id alimtegar/indowebgen-dataset \
-  --output_dir "./indowebgen-7b-2k-lora" \
-  --output_model_id alimtegar/indowebgen-7b-2k-lora \
+  --output_dir "./indowebgen-7b-4k-lora" \
+  --output_model_id alimtegar/indowebgen-7b-4k-lora \
   --commit_message "Finetune for 3 epochs" \
   --vastai_api_key xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
   --vastai_instance_id 1234567
