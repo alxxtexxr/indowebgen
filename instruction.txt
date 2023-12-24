@@ -1,1 +1,0 @@
-Write an HTML code file for a {website_type} website
